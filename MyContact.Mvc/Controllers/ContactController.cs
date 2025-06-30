@@ -32,7 +32,7 @@ public class ContactController : Controller
         return RedirectToAction("Index");
     }
 
-    [HttpDelete("{id}")]
+    [HttpGet("{id}")]
     public IActionResult Delete(int id)
     {
         contacts.RemoveAll(c => c.Id == id);
