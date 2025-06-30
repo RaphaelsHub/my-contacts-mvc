@@ -20,6 +20,9 @@ jobs:
       - name: Build the project
         run: dotnet build MyContact.Mvc/MyContact.Mvc.csproj --configuration Release
 
+      - name: Run tests
+        run: dotnet test MyContact.Mvc.Test/MyContact.Mvc.Test.csproj
+
       - name: Publish the project
         run: dotnet publish MyContact.Mvc/MyContact.Mvc.csproj -c Release -o out
 
