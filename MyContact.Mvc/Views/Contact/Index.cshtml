@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form asp-action="Add" method="post">
+    <input type="text" name="name" placeholder="Name" required />
+    <input type="text" name="phone" placeholder="Phone" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <button type="submit">Add Contact</button>
+</form>
+
+<hr />
+
+@foreach (var contact in Model)
+{
+    <div>
+        <p><strong>@contact.Name</strong></p>
+        <p>@contact.Phone</p>
+        <p>@contact.Email</p>
+        <a asp-action="Delete" asp-route-id="@contact.Id">Delete</a>
+    </div>
+}
