@@ -1,0 +1,27 @@
+name: Build and Dockerize MyContact.Mvc
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Build the project
+        run: dotnet build MyContact.Mvc/MyContact.Mvc.csproj --configuration Release
+
+      - name: Publish the project
+        run: dotnet publish MyContact.Mvc/MyContact.Mvc.csproj -c Release -o out
+
+      - name: Build Docker image
+        run: docker build -t mycontacts MyContact.Mvc/
